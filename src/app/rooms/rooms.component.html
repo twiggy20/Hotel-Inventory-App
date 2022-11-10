@@ -1,0 +1,22 @@
+<!-- <h2>Welcome to {{hotelName}} hotel</h2> -->
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+<div [hidden]="hideRooms">
+    <p >We have <span [innerText]="numberOfRooms"></span>  number of rooms</p>
+</div>
+<button class="btn btn-primary" (click)="toggle()">See more</button>
+<p *ngIf="room.bookedRooms== 0">no room has been booked</p>
+<div *ngIf="room?.bookedRooms " [ngStyle]="{'color':room.bookedRooms?'green':'grey'} ">
+    <p > {{room.bookedRooms}} rooms have been booked, get yours now!</p>
+</div>
+<div *ngIf="room.availableRooms > 0">
+    <app-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)" [title]="mytitle" ></app-rooms-list>
+</div>
+<div *ngIf="selected">
+    <div *ngFor="let room of selectedRooms"></div>
+        {{selectedRooms|json}}
+</div>
+<div>
+    <button (click)="addRoom()">Add room</button>
+</div>
